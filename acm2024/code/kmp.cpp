@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstring>
 
 void get_next(const char *target, int* next) {
     int i = 1, k = 0, len_t;
@@ -10,6 +11,7 @@ void get_next(const char *target, int* next) {
             k++;
         } else if (k == 0) {
             next[i] = 0;
+            i++;
         } else {
             k = next[k - 1];
         }
@@ -17,7 +19,7 @@ void get_next(const char *target, int* next) {
 }
 
 int KMP(const char *source, const char *target) {
-    int len_s, len_t;
+    int len_s = strlen(source), len_t;
     int* next = new int[len_t];
     get_next(target, next);
 

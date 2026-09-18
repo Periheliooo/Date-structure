@@ -2,6 +2,9 @@
 ppt/
 /textbook/
 
+# 独立克隆的项目仓库
+/STLite-ACM-2026/
+
 # 其他目录中散放的课件、文档
 *.[pP][dD][fF]
 *.[pP][pP][tT]

@@ -2,7 +2,7 @@
 #include <cstring>
 
 void get_next(const char *target, int* next) {
-    int i = 1, k = 0, len_t;
+    int i = 1, k = 0, len_t = strlen(target);
     next[0] = 0;
     while (i < len_t) {
         if (target[i] == target[k]) {
@@ -19,21 +19,30 @@ void get_next(const char *target, int* next) {
 }
 
 int KMP(const char *source, const char *target) {
-    int len_s = strlen(source), len_t;
+    int len_s = strlen(source), len_t = strlen(target);
+    if (len_t == 0) return 0;
     int* next = new int[len_t];
     get_next(target, next);
 
     int i = 0, j = 0;
     while (i < len_s) {
-        int k = i;
-        if (target[k] == source[i]) {
-            k++;
+        if (source[i] == target[j]) {
+            i++;
+            j++;
+            if (j == len_t) {
+                delete[] next;
+                return i - j;
+            }
+        } else if (j == 0) {
+            i++;
+        } else {
+            j = next[j - 1];
         }
-        i++;
     }
+    delete[] next;    // Attention!
     return -1;
 }
 
 int main() {
-
+    return 0;
 }

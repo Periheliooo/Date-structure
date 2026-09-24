@@ -16,10 +16,13 @@ private:
     string file_name;
     int sizeofT = sizeof(T);
     struct node {
+        int index;
         int length;
         node* next;
-    }
-    node* freelist;
+        node(int i = 0, int len = 0, node* n = nullptr)
+            : index(i), length(len), next(n) {}
+    };
+    node* freelist = new node();
 
 public:
     MemoryRiver() = default;
@@ -33,6 +36,11 @@ public:
         for (int i = 0; i < info_len; ++i)
             file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
         file.close();
+        while (freelist->next != nullptr) {
+            node* p = freelist->next;
+            freelist->next = p->next;
+            delete p;
+        }
     }
 
     //读出第n个int的值赋给tmp，1_base
@@ -60,21 +68,68 @@ public:
     //位置索引index可以取为对象写入的起始位置
     int write(T &t) {
         /* your code here */
+        file.open(file_name, std::ios::in | std::ios::out | std::ios::binary);
+        node *q = freelist, *p = q->next;
+        while (p != nullptr) {
+            if (p->length > sizeof(T)) {
+                file.seekp(p->index, std::ios::beg);
+                int index = static_cast<int>(file.tellp());
+                file.write(reinterpret_cast<char *>(&t), sizeofT);
+                file.close();
+                p->index += sizeof(T);
+                p->length -= sizeof(T);
+                return index;
+            } else if (p->length == sizeof(T)) {
+                file.seekp(p->index, std::ios::beg);
+                int index = static_cast<int>(file.tellp());
+                file.write(reinterpret_cast<char *>(&t), sizeofT);
+                file.close();
+                q->next = p->next;
+                delete p;
+                return index;
+            }
+            q = p;
+            p = p->next;
+        }
+
+        file.seekp(0, std::ios::end);
+        int index = static_cast<int>(file.tellp());
+        file.write(reinterpret_cast<char *>(&t), sizeofT);
+        file.close();
+        return index;
     }
 
     //用t的值更新位置索引index对应的对象，保证调用的index都是由write函数产生
     void update(T &t, const int index) {
         /* your code here */
+        file.open(file_name, std::ios::in | std::ios::out | std::ios::binary);
+        file.seekp(index, std::ios::beg);
+        file.write(reinterpret_cast<char *>(&t), sizeofT);
+        file.close();
     }
 
     //读出位置索引index对应的T对象的值并赋值给t，保证调用的index都是由write函数产生
     void read(T &t, const int index) {
         /* your code here */
+        file.open(file_name, std::ios::in | std::ios::binary);
+        file.seekg(index, std::ios::beg);
+        file.read(reinterpret_cast<char *>(&t), sizeofT);
+        file.close();
     }
 
     //删除位置索引index对应的对象(不涉及空间回收时，可忽略此函数)，保证调用的index都是由write函数产生
     void Delete(int index) {
         /* your code here */
+        node* p = new node(index, sizeofT, freelist->next);
+        freelist->next = p;
+    }
+
+    ~MemoryRiver() {
+        while (freelist != nullptr) {
+            node* p = freelist;
+            freelist = freelist->next;
+            delete p;
+        }
     }
 };
 

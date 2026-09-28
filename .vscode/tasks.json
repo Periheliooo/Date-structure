@@ -8,6 +8,11 @@
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "-g",
+                "-std=c++20",
+                "-I",
+                "${workspaceFolder}/STLite-ACM-2026/vector/src",
+                "-I",
+                "${workspaceFolder}/STLite-ACM-2026/vector/data",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

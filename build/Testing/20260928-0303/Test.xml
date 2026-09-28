@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Darwin-clang++"
+	BuildStamp="20260928-0303-Experimental"
+	Name="wuzhengyangdeMacBook-Air.local"
+	Generator="ctest-4.4.3"
+	CompilerName="/usr/bin/clang++"
+	CompilerVersion="21.0.0.21000334"
+	OSName="macOS"
+	Hostname="wuzhengyangdeMacBook-Air.local"
+	OSRelease="26.6.2"
+	OSVersion="25G83"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="Apple"
+	VendorID="Apple"
+	FamilyID="0"
+	ModelID="0"
+	ModelName="Apple M5"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="10"
+	NumberOfPhysicalCPU="10"
+	TotalVirtualMemory="3072"
+	TotalPhysicalMemory="24576"
+	LogicalProcessorsPerPhysical="10"
+	ProcessorClockFrequency="0.000000"
+	>
+	<Testing>
+		<StartDateTime>Sep 28 11:03 CST</StartDateTime>
+		<StartTestTime>1790564583</StartTestTime>
+		<TestList/>
+		<EndDateTime>Sep 28 11:03 CST</EndDateTime>
+		<EndTestTime>1790564583</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

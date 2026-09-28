@@ -1,0 +1,14 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/_deps/googletest-build/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/_deps/googletest-build/googletest/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/vector/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/deque/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/priority_queue/cmake_install.cmake",
+		"/Users/zhengyangwu/Documents/CS/Data structure/build/map/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
